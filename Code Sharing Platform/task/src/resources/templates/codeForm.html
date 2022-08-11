@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create</title>
+    <link rel="stylesheet"
+          href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/styles/default.min.css">
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <style>
+        body {
+            background-color: #16288e;
+        }
+
+        #code_snippet {
+             border: 2px solid #999797;
+             background-color: white;
+             width: 1009px;
+             height: 633px;
+        }
+
+        #send_snippet {
+            border-radius: 3px;
+            background-color: white;
+            margin-left: 5px;
+        }
+    </style>
+
+    <script>
+        function send() {
+    let object = {
+        "code": document.getElementById("code_snippet").value,
+        "time": document.getElementById("time_restriction").value,
+        "views": document.getElementById("views_restriction").value,
+    };
+
+    let json = JSON.stringify(object);
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", '/api/code/new', false)
+    xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+    xhr.send(json);
+
+    if (xhr.status == 200) {
+      alert("Success!");
+    }
+}
+    </script>
+</head>
+<body>
+    <textarea id="code_snippet" rows="20" cols="100">//write your code here</textarea>
+
+    <div >
+        <label style="color:white;" for="time_restriction">Times</label>
+        <input id="time_restriction" type="text"/>
+        <label style="color:white;" for="views_restriction">Views</label>
+        <input id="views_restriction" type="text"/>
+        <button style="background-color:#93a3ff; color:white;" id="send_snippet" type="submit" onclick="send()">Submit</button>
+        <br>
+        <p style="color:white">
+            <ol>
+                <li style="color:white">
+                    Times: A limit on the viewing time will allow viewing a code for a certain period of time,
+                    and after its expiration, the code is deleted from the database.
+                </li>
+
+                <li style="color:white">
+                    Views: A limit on the number of views will allow viewing the code only a certain number of times,
+                    after which the code is deleted from the database.
+                </li>
+            </ol>
+        </p>
+    </div>
+</body>
+</html>

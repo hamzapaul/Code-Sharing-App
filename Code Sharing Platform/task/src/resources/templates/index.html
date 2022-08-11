@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Code</title>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/styles/default.min.css">
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <style>
+        #load_date {
+            color:green;
+            margin-bottom: 0;
+            float: left;
+        }
+
+        #code {
+            margin-top: 0;
+        }
+        #time_restriction {
+           margin-bottom: 0;
+        }
+    </style>
+
+</head>
+<body>
+
+    <span id="load_date" th:utext="${codeObj.getDate()}"></span>
+    <br>
+    <br>
+    <span id="views_restriction" th:utext="${codeObj.getViews()} + ' more views allowed'"
+          th:if="${codeObj.isViewsRestricted() and codeObj.getViews() >= 0}"></span>
+    <br>
+    <span id="time_restriction" th:utext="'The code will be available for ' + ${codeObj.getTime()} + ' seconds'"
+          th:if="${codeObj.isTimeRestricted() and codeObj.getTime() > 0}"></span>
+
+    <pre id="code_snippet">
+        <code id="code" th:utext="${codeObj.getCode()}"></code>
+    </pre>
+
+</body>
+</html>
