@@ -3,7 +3,7 @@
 <h1>OverView</h1>
 
 <p>
-With this app you can share your code with your team-mates. You can also share your code for a certain period of time + you can set the number of times it should be viewed by others.
+With this app you can share your code with your team-mates. You can also set the timer and specify the number of views so that after a certain period of time or when the maximun number of views will reach, it will get deleted from the database.
 
 <h2>Tools</h2>
 <ol>
